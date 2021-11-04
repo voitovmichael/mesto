@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 const validator = require('validator');
+const cors = require('cors');
 
 const user = require('./routes/user');
 const { login } = require('./controller/user');
@@ -12,7 +13,7 @@ const { auth } = require('./middlewears/auth');
 const { processError } = require('./middlewears/error');
 const NotFound = require('./errors/not-found-err');
 const { winstonLogger, errorLogger } = require('./middlewears/logger');
-const checkHeaders = require('./middlewears/cors');
+// const checkHeaders = require('./middlewears/cors');
 
 const app = express();
 
@@ -37,7 +38,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 console.log('here app');
-app.use(checkHeaders);
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
