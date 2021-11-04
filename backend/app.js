@@ -36,7 +36,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   // useFindAndModify: false
   useUnifiedTopology: true,
 });
-
+console.log('here app');
 app.use(checkHeaders);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

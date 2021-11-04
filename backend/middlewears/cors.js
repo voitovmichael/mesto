@@ -8,6 +8,7 @@ const allowedCors = [
 // const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
 
 const checkHeaders = (req, res, next) => {
+  console.log('here');
   const { origin } = req.headers;
   console.log(origin);
   // const requestHeaders = req.headers();
