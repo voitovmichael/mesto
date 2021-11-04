@@ -13,6 +13,7 @@ const { processError } = require('./middlewears/error');
 const NotFound = require('./errors/not-found-err');
 const { winstonLogger, errorLogger } = require('./middlewears/logger');
 const checkHeaders = require('./middlewears/cors');
+
 const app = express();
 
 const checkEmail = (value) => {
