@@ -45,7 +45,7 @@ app.use(cookieParser());
 app.use(winstonLogger);
 app.post('/signin', celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().custom(checkEmail, 'custom email validate'),
+    email: Joi.string().custom(checkEmail, 'custom email validate'),
     password: Joi.string().required(),
   }),
 }), login);
