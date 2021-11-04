@@ -43,12 +43,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(winstonLogger);
-app.post('/signin', celebrate({
+app.post('/signin',
+/*celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().custom(checkEmail, 'custom email validate'),
     password: Joi.string().required(),
   }),
-}), login);
+}),*/ login);
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
