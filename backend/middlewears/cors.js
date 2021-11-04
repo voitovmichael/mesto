@@ -13,8 +13,7 @@ const checkHeaders = (req, res, next) => {
   console.log(origin);
   // const requestHeaders = req.headers();
   if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', '*');
-    return res.end();
+    res.header('Access-Control-Allow-Origin', origin);
   }
   // if (req.method === 'OPTIONS') {
   //   res.header('Access-Control-Allow-Headers', DEFAULT_ALLOWED_METHODS);
