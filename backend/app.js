@@ -12,7 +12,7 @@ const { auth } = require('./middlewears/auth');
 const { processError } = require('./middlewears/error');
 const NotFound = require('./errors/not-found-err');
 const { winstonLogger, errorLogger } = require('./middlewears/logger');
-
+const checkHeaders = require('./middlewears/cors');
 const app = express();
 
 const checkEmail = (value) => {
@@ -36,6 +36,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
+app.use(checkHeaders);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
