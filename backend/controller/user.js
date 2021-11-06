@@ -16,7 +16,7 @@ const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
-  res.status(400).send({ body: req.body });
+  res.status(400).send({ body: req.body, email });
   // User.findOne({ email })
   //   .then((user) => {
   //     if (!user) {
