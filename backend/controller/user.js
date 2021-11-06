@@ -16,35 +16,35 @@ const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
-  const body = req.body;
-  res.status(400).send({ email });
-  // User.findOne({ email })
-  //   .then((user) => {
-  //     if (!user) {
-  //       bcryptjs.hash(password, 10)
-  //         .then((hash) => {
-  //           User.create({
-  //             name, about, avatar, email, password: hash,
-  //           })
-  //             .then((newUser) => {
-  //               const { _id } = newUser;
-  //               res.status(200).send({
-  //                 _id, email, name, avatar,
-  //               });
-  //             })
-  //             .catch((err) => {
-  //               if (err.name === 'ValidationError') {
-  //                 next(new RequestError('Переданы некорректные данные для создании карточки.'));
-  //               } else {
-  //                 next(err);
-  //               }
-  //             });
-  //         })
-  //         .catch(next);
-  //     } else {
-  //       next(new SameDataError('Пользователь с таким email уже существует'));
-  //     }
-  //   });
+  // const body = req.body;
+  // res.status(400).send({ email });
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        bcryptjs.hash(password, 10)
+          .then((hash) => {
+            User.create({
+              name, about, avatar, email, password: hash,
+            })
+              .then((newUser) => {
+                const { _id } = newUser;
+                res.status(200).send({
+                  _id, email, name, avatar,
+                });
+              })
+              .catch((err) => {
+                if (err.name === 'ValidationError') {
+                  next(new RequestError('Переданы некорректные данные для создании карточки.'));
+                } else {
+                  next(err);
+                }
+              });
+          })
+          .catch(next);
+      } else {
+        next(new SameDataError('Пользователь с таким email уже существует'));
+      }
+    });
 };
 
 const getUser = (req, res, next) => {
