@@ -52,15 +52,15 @@ app.post('/signin', /*celebrate({
 }), */login);
 
 app.post('/signup',
-// celebrate({
-//   body: Joi.object().keys({
-//     email: Joi.string().required().custom(checkEmail, 'custom email validate'),
-//     password: Joi.string().required(),
-//     name: Joi.string().min(2).max(30),
-//     about: Joi.string().min(2).max(30),
-//     avatar: Joi.string().custom(checkUrl, 'custom url validation'),
-//   }),
-// }),
+celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().custom(checkEmail, 'custom email validate'),
+    password: Joi.string().required(),
+    name: Joi.string().min(2).max(30),
+    about: Joi.string().min(2).max(30),
+    avatar: Joi.string().custom(checkUrl, 'custom url validation'),
+  }),
+}),
 createUser);
 app.use('/users', auth, user);
 app.use('/cards', auth, require('./routes/card'));
